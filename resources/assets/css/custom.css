@@ -1,0 +1,12 @@
+nav {
+    background: #343a40!important;
+}
+
+nav a,
+nav a:hover {
+    color: #ffffff;
+}
+
+.form-wrapper {
+    padding-top: 40px;
+}
