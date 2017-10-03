@@ -47,7 +47,6 @@ class ExchangeRatesApi
         ExchangeRate::truncate();
         // Prepare api result for updating in database.
         $quotes = $exchangeRates['quotes'];
-
         $gbp = [
             'name' => 'British Pound',
             'shortcode' => 'GBP',
@@ -67,11 +66,11 @@ class ExchangeRatesApi
         ];
 
         $allCurrencies = [$gbp, $jen, $eur];
+
         // Insert currencies into database.
         $updateExchangeRate = ExchangeRate::insert($allCurrencies);
 
         if ($updateExchangeRate) {
-            echo 'Exchange rates updated';
             return true;
         }
 

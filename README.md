@@ -20,7 +20,7 @@ Run composer install.
 ```
 composer install
 ```
-Now create .env file and create database. Change database name, username and password with your settings
+Now create .env file and create database. Change database name, username and password with your settings.
 
 ```
 cp .env.example .env
@@ -37,6 +37,13 @@ Run the migrations.
 ```
 php artisan migrate
 ```
+Get the lates exchange rates from the api.
 
-And you should be ready to go.
+```
+php artisan update-exchange-rate
+```
+And you should be ready to go. If you want you can use laravel server for testing purpose. Just go inside the project and run:
 
+```
+php artisan serve
+```

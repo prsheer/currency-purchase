@@ -72,11 +72,13 @@
                         if( data.status == 'success' ){
                             window.location = '{{ route('success', 0) }}'.replace('/0', '/'+data.order_id);
                         }else{
-                            alert('Error: Please try again.');
+                            alert('Error: You probably forget to set mailtrap settings. If you dont have mailtrap, please use another currency for purchase instead GBP.');
+                            window.location = '{{ route('homepage') }}';
                         }
                     },
                     error: function (data) {
-                        alert('Error: Please try again.');
+                        alert('Error: You probably forget to set mailtrap settings. If you dont have mailtrap, please use another currency for purchase instead GBP.');
+                        window.location = '{{ route('homepage') }}';
                     }
                 });
             });
