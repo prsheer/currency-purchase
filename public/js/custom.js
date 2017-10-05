@@ -74,13 +74,13 @@ $( document ).ready(function() {
             // Get name and surchange of the currency for passing them to the form.
             if (currencySelected == 'JPY') {
                 currencyShortcode += 'JPY';
-                surchangePercentage = $('#jpy').val() + '%';
+                surchangePercentage = '7.5%';
             } else if (currencySelected == 'GBP') {
                 currencyShortcode += 'GBP';
-                surchangePercentage = $('#gbp').val() + '%';
+                surchangePercentage = '5%';
             } else if (currencySelected == 'EUR') {
                 currencyShortcode += 'EUR';
-                surchangePercentage = $('#eur').val() + '%';
+                surchangePercentage = '5%';
                 discountForEuro = '2%';
             }
 

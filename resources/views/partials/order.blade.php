@@ -59,28 +59,24 @@
     </div><!-- /.modal-content -->
 </div><!-- /#form-modal -->
     <script>
-        $("#checkout").click(function() {
-            var checkout = $("#checkout-form");  //form id
-            checkout.submit(function(e){
-                e.preventDefault();
-                var formData = checkout.serialize();
-                $.ajax({
-                    url:"create",
-                    method:'post',
-                    data:formData,
-                    success:function(data){
-                        if( data.status == 'success' ){
-                            window.location = '{{ route('success', 0) }}'.replace('/0', '/'+data.order_id);
-                        }else{
-                            alert('Error: You probably forget to set mailtrap settings. If you dont have mailtrap, please use another currency for purchase instead GBP.');
-                            window.location = '{{ route('homepage') }}';
-                        }
-                    },
-                    error: function (data) {
+        var checkout = $("#checkout-form");  //form id
+        checkout.submit(function(e){
+            e.preventDefault();
+            var formData = checkout.serialize();
+            $.ajax({
+                url:"create",
+                method:'post',
+                data:formData,
+                success:function(data){
+                    if( data.status == 'success' ){
+                        window.location = '{{ route('success', 0) }}'.replace('/0', '/'+data.order_id);
+                    }else{
                         alert('Error: You probably forget to set mailtrap settings. If you dont have mailtrap, please use another currency for purchase instead GBP.');
-                        window.location = '{{ route('homepage') }}';
                     }
-                });
+                },
+                error: function (data) {
+                    alert('Error: You probably forget to set mailtrap settings. If you dont have mailtrap, please use another currency for purchase instead GBP.');
+                }
             });
         });
     </script>

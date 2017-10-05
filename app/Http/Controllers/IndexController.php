@@ -26,22 +26,26 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request) {
+    public function create(Request $request, TotalsCalculator $totals) {
+
         // Get requested data.
         $data = $request->all();
+        // Calculate the totals.
+        $totals = $totals->makeTotalsCalculations($data);
+
         // Prepare data for insert.
         $customer = new Customer([
-            'email'     => $data['email'],
-            'firstname' => $data['firstname'],
-            'lastname'  => $data['lastname'],
+            'email'     => $totals['email'],
+            'firstname' => $totals['firstname'],
+            'lastname'  => $totals['lastname'],
         ]);
         // Save customer and order data.
         if ($customer->save()) {
-            $order = new Order($data);
+            $order = new Order($totals);
             $saveOrder = $customer->orders()->save($order);
 
             if ($saveOrder) {
-                
+                // Call event - listener to send email to customer.
                 event(new OrderCreated($order));
 
                 return ['status'=>'success', 'order_id'=>$order->id];
